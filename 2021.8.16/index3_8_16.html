@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    window.onload = function () {
+        var areaDiv = document.getElementById("areaDiv");
+        var showDiv = document.getElementById("showDiv");
+
+        areaDiv.onmousemove = function (event) {
+            //在showDiv里面显示鼠标坐标
+            // alert(event);
+            var x= event.clientX;
+            var y= event.clientY;
+            showDiv.innerHTML = "x="+x+","+"y="+y;
+        }
+    };
+</script>
+<style>
+    #areaDiv {
+        width: 350px;
+        height: 150px;
+        border: 1px solid black;
+    }
+
+    #showDiv {
+        width: 350px;
+        height: 50px;
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+    <div id="areaDiv"></div>
+    <br>
+    <div id="showDiv"></div>
+</body>
+
+</html>
