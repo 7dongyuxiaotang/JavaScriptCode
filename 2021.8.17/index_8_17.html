@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    window.onload = function () {
+        var btn = document.getElementById("btn");
+        var ul = document.getElementsByTagName("ul")[0];
+        btn.onclick = function () {
+            var li = document.createElement("li");
+            ul.appendChild(li);
+            li.innerHTML = "<a href='javascript:;' class='link'>新创建的超链接</a>"
+        };
+
+        ul.onclick = function (event) {
+            event = event || window.event;
+
+            if(event.target.className == "link"){
+                alert("~~")
+            }
+        };
+
+    };
+</script>
+
+<body>
+    <button id="btn">添加新的链接</button>
+    <br>
+    <ul style="background-color: #bfa;">
+        <li><a href="javascript:;" class="link"> 超链接</a></li>
+        <li><a href="javascript:;" class="link"> 超链接</a></li>
+        <li><a href="javascript:;" class="link"> 超链接</a></li>
+    </ul>
+
+</body>
+
+</html>

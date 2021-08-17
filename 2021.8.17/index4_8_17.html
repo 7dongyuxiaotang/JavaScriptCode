@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    window.onload = function () {
+        img = document.getElementById("img1");
+
+        var imgArr = ["./1.jfif", "./2.jfif", "./3.jfif", "./4.jfif", "./5.jfif"];
+
+        var index = 0;
+        var btn1 = document.getElementById("btn1");
+        var timer;
+        btn1.onclick = function () { //点击多次开始，就会开启多个定时器，并且无法关闭
+            //开启定时器
+            //关闭上一个定时器
+            clearInterval(timer);
+            timer = setInterval(function () {
+                //使索引自增
+                index++;
+                if (index >= imgArr.length) {
+                    index = 0;
+                }
+
+                img1.src = imgArr[index];
+            }, 1000);
+        };
+
+        var btn2 = document.getElementById("btn2");
+        btn2.onclick = function(){
+            //停止计时器
+            clearInterval(timer);
+        }
+    };
+
+
+</script>
+
+<body>
+    <img src="./1.jfif" alt="显示不出来" id="img1">
+    <br>
+    <button id="btn1">开始</button>
+    <button id ="btn2">停止</button>
+</body>
+
+</html>
