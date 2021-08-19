@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #outer {
+        width: 678px;
+        height: 439px;
+        margin: 50px auto;
+        background-color: pink;
+        padding: 10px 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #imgList {
+        list-style: none;
+        position: absolute;
+        left: 0px;
+    }
+
+    #imgList li {
+        float: left;
+        margin: 0 10px;
+    }
+
+    #navDiv {
+        position: absolute;
+        bottom: 20px;
+    }
+
+    #navDiv a {
+        float: left;
+        width: 15px;
+        height: 15px;
+        background-color: red;
+        margin: 10px;
+        opacity: 0.5;
+    }
+
+    #navDiv a:hover {
+        background-color: black;
+    }
+</style>
+<script src="./tool.js"></script>
+<script>
+    window.onload = function () {
+        var imgList = document.getElementById("imgList");
+        var imgArr = document.getElementsByTagName("img");
+        imgList.style.width = 678 * imgArr.length + "px";
+        var navDiv = document.getElementById("navDiv");
+        var outer = document.getElementById("outer");
+        navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth) / 2 + "px";
+        var allA = document.getElementsByTagName("a");
+
+        var index = 0;
+
+        allA[index].style.backgroundColor = "black";
+
+        //点击超链接切换图片
+        for (var i = 0; i < allA.length; i++) {
+            allA[i].num = i;
+            allA[i].onclick = function () {
+
+                //关闭自动切换的定时器
+                clearInterval(timer);
+                //获取点击超链接的索引
+                index = this.num;
+                // imgList.style.left = index * (-678) + "px";
+                //修改超链接颜色
+                SetA();
+                move(imgList, "left", (-678 * index), 110, function () {
+                    autoChange();
+                });
+            };
+        };
+
+        function SetA() {
+            //遍历所有的a，让他们的背景颜色变为默认颜色
+            if (index >= imgArr.length -1){
+                index = 0;
+                imgList.style.left = 0;
+            }
+            for (var i = 0; i < allA.length; i++) {
+                allA[i].style.backgroundColor = "";
+                allA[i].style.opacity = "0.5";
+            }
+            //正在浏览的图片，就显示黑色
+            allA[index].style.backgroundColor = "black";
+        };
+        var timer;
+        function autoChange(){
+            timer = setInterval(function(){
+                //索引自增
+                index++;
+                // index %= imgArr.length;
+                if(index > imgArr.length-1){
+                    index = 0;
+                }
+                move(imgList, "left", (-678 * index), 110, function () {
+                    SetA();
+                 })
+            },2000);
+        }
+        autoChange();
+    };
+</script>
+
+<body>
+    <div id="outer">
+        <ul id="imgList">
+            <li><img src="./1.jfif" alt=""></li>
+            <li><img src="./2.jfif" alt=""></li>
+            <li><img src="./3.jfif" alt=""></li>
+            <li><img src="./4.jfif" alt=""></li>
+            <li><img src="./5.jfif" alt=""></li>
+            <li><img src="./1.jfif" alt=""></li>
+        </ul>
+        <div id="navDiv">
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+        </div>
+    </div>
+</body>
+
+</html>
