@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <!-- <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style> -->
+</head>
+<body>
+    <div id="app">
+        <!-- <h4>你好，{{lastname}}</h4>
+        <h4 v-once>你好，{{lastname}}</h4> -->
+        <!-- <h2>{{firstname}}</h2> -->
+        <!-- <h2 v-cloak>{{firstname}}</h2> -->
+        <img v-bind:src="imgUrl" alt="">
+    </div>
+    <script>
+        setTimeout(function(){
+            const app =new Vue({
+            el:"#app",
+            data:{
+                firstname:"法外狂徒",
+                lastname:"张三",
+                url:"<a href='www.baidu.com'>百度一下</a>",
+                imgUrl:"./1.jfif"
+            }
+        })},1000)
+    </script>
+</body>
+</html>
