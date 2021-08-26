@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .active{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <ul><li v-for="(item,index) in info" 
+      @click="liclick(index)" :class="{active:currentIndex === index}">
+      {{item}}
+    </li></ul>
+  </div>
+  <script src="../vue.js"></script>
+  <script>
+    const app = new Vue({
+      el:"#app",
+      data:{
+        message:"如果信息为true，就显示我",
+        isShow:"true",
+        isUser:"true",
+        info:["美国队长3:内战","钢铁侠2","蜘蛛侠3：英雄无归","蜘蛛侠2：英雄远征","蜘蛛侠1：英雄归来"],
+        currentIndex:0,
+      },
+      methods:{
+        liclick(index){
+          this.currentIndex = index;
+        }
+      }
+    })
+  </script>
+</body>
+</html>
